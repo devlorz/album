@@ -1,18 +1,18 @@
-import React from 'react'
-import { Text, View, Image } from 'react-native'
-import Card from './Card'
-import CardSection from './CardSection'
-import Button from './Button'
+import React from 'react';
+import { Text, View, Image, Linking } from 'react-native';
+import Card from './Card';
+import CardSection from './CardSection';
+import Button from './Button';
 
-const AlbumDetail = (props) => {
-  const { title, artist, thumbnail_image, image } = props.album
-  const { 
-    thumbnailStyle, 
-    headerContentStyle,  
+const AlbumDetail = props => {
+  const { title, artist, thumbnail_image, image, url } = props.album;
+  const {
+    thumbnailStyle,
+    headerContentStyle,
     thumbnailContainerStyle,
     headerTextStyle,
     imageStyle
-  } = styles
+  } = styles;
 
   return (
     <Card>
@@ -26,17 +26,14 @@ const AlbumDetail = (props) => {
         </View>
       </CardSection>
       <CardSection>
-        <Image 
-          style={imageStyle} 
-          source={{ uri: image }} 
-        />
+        <Image style={imageStyle} source={{ uri: image }} />
       </CardSection>
       <CardSection>
-        <Button />
+        <Button onPress={() => Linking.openURL(url)}>Buy Now</Button>
       </CardSection>
     </Card>
-  )
-}
+  );
+};
 
 const styles = {
   headerContentStyle: {
@@ -61,6 +58,6 @@ const styles = {
     flex: 1,
     width: null
   }
-}
+};
 
-export default AlbumDetail
+export default AlbumDetail;
